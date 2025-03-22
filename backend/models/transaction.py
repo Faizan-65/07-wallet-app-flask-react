@@ -24,5 +24,16 @@ class Transaction(db.Model):
         self.category_id = category_id
         self.timestamp = datetime.now(timezone.utc)
         self.created_at = datetime.now(timezone.utc)
-
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'account_id': self.account_id,
+            'type': self.type,
+            'amount': float(self.amount),  # Convert Decimal to float for JSON serialization
+            'description': self.description,
+            'category_id': self.category_id,
+            'timestamp': self.timestamp.isoformat() if self.timestamp else None,
+            'created_at': self.created_at.isoformat() if self.created_at else None,
+            'updated_at': self.updated_at.isoformat() if self.updated_at else None
+        }
 

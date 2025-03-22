@@ -7,6 +7,7 @@ from flask_cors import CORS
 from routes.account_routes import account_bp
 from routes.auth_routes import auth_bp
 from routes.user_routes import user_bp
+from routes.transaction_routes import transaction_bp
 from models import User, Account, Category, Transaction
 from os import environ
 from dotenv import load_dotenv
@@ -47,7 +48,7 @@ def create_app():
     app.register_blueprint(auth_bp, url_prefix='/api/auth')
     app.register_blueprint(user_bp, url_prefix='/api/users')
     app.register_blueprint(account_bp, url_prefix='/api/accounts')
-
+    app.register_blueprint(transaction_bp, url_prefix='/api/transactions')
     # Initialize database
     with app.app_context():
         from models import User, Account, Category, Transaction

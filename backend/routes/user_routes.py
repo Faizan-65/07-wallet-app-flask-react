@@ -5,6 +5,7 @@ from models import User, Category, Account
 
 user_bp = Blueprint("users", __name__)
 
+# Create is handled by auth routes
 
 @user_bp.route("/<int:id>", methods=["GET"])
 @jwt_required()
